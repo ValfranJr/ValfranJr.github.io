@@ -8,9 +8,19 @@ function login() {
     const validPassword = "senha123";
 
     if (username === validUsername && password === validPassword) {
-        // Redireciona para a página da home se as credenciais forem corretas
+        // Armazenar a informação de que o usuário está logado
+        localStorage.setItem('isLoggedIn', 'true');
+        // Redireciona para a página da calculadora se as credenciais forem corretas
         window.location.href = "home.html";
     } else {
         document.getElementById('error-message').innerText = "Usuário ou senha incorretos.";
+    }
+}
+
+function checkLogin() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    if (!isLoggedIn) {
+        // Redireciona para a página de login se o usuário não estiver logado
+        window.location.href = "index.html";
     }
 }
