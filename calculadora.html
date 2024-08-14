@@ -35,4 +35,71 @@
                 // Mostrar o formulário de login se o usuário não estiver logado
                 document.getElementById('loginForm').style.display = 'block';
                 document.getElementById('calculatorContent').style.display = 'none';
-          
+            }
+        }
+
+        function calcularPrecoVenda() {
+            const cmv = parseFloat(document.getElementById('cmv').value);
+            const emb = parseFloat(document.getElementById('emb').value);
+            const custoFixo = parseFloat(document.getElementById('custoFixo').value) / 100;
+            const lucro = parseFloat(document.getElementById('lucro').value) / 100;
+
+            const precoVenda = (cmv + emb) / (1 - (custoFixo + lucro));
+            document.getElementById('resultado').innerText = `Preço de Venda: R$ ${precoVenda.toFixed(2)}`;
+        }
+    </script>
+</head>
+<body onload="checkLogin()">
+
+    <div id="loginForm">
+        <h2>Login</h2>
+        <label for="username">Usuário:</label>
+        <input type="text" id="username" placeholder="Insira seu usuário">
+
+        <label for="password">Senha:</label>
+        <input type="password" id="password" placeholder="Insira sua senha">
+
+        <button onclick="login()">Entrar</button>
+
+        <p id="error-message" style="color:red;"></p>
+    </div>
+
+    <div id="calculatorContent" style="display: none;">
+        <h2>Calculadora de Preço de Venda</h2>
+        <label for="cmv">Custo de Mercadoria Vendida (CMV):</label>
+        <input type="number" id="cmv" placeholder="Insira o CMV">
+
+        <label for="emb">Custo da Embalagem (EMB):</label>
+        <input type="number" id="emb" placeholder="Insira o custo da embalagem">
+
+        <label for="custoFixo">Percentual do Custo Fixo (%):</label>
+        <input type="number" id="custoFixo" placeholder="Insira o percentual do custo fixo">
+
+        <label for="lucro">Percentual de Lucro (%):</label>
+        <input type="number" id="lucro" placeholder="Insira o percentual de lucro">
+
+        <button onclick="calcularPrecoVenda()">Calcular Preço de Venda</button>
+
+        <h3 id="resultado"></h3>
+
+        <h2>FAQ - Perguntas Frequentes</h2>
+        <div>
+            <h3>O que é CMV?</h3>
+            <p>CMV é o Custo de Mercadoria Vendida. Refere-se ao custo direto de produção dos bens vendidos por uma empresa. Inclui o custo das matérias-primas e da mão de obra utilizada na produção dos bens.</p>
+            
+            <h3>O que é o Custo da Embalagem?</h3>
+            <p>Este é o custo associado à embalagem utilizada para embalar o produto antes da venda.</p>
+
+            <h3>O que é o Percentual do Custo Fixo?</h3>
+            <p>O Percentual do Custo Fixo refere-se à porcentagem dos custos fixos que você deseja atribuir ao cálculo do preço de venda. Custos fixos são aqueles que não variam com a produção, como aluguel, salários, etc.</p>
+
+            <h3>O que é o Percentual de Lucro?</h3>
+            <p>O Percentual de Lucro é a margem de lucro desejada sobre o custo total. Representa o quanto você quer ganhar em relação ao custo para definir o preço de venda.</p>
+
+            <h3>Exemplo de Cálculo</h3>
+            <p>Se o CMV é R$ 50, o custo da embalagem é R$ 5, o percentual de custo fixo é 10% (0,10) e o percentual de lucro é 20% (0,20), o preço de venda seria calculado da seguinte forma:</p>
+            <p>Preço de Venda = (50 + 5) / (1 - (0,10 + 0,20)) = 55 / 0,7 = R$ 78,57</p>
+        </div>
+    </div>
+</body>
+</html>
