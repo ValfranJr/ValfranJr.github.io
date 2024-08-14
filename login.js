@@ -1,4 +1,3 @@
-
 function login() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
@@ -10,8 +9,8 @@ function login() {
     if (username === validUsername && password === validPassword) {
         // Armazenar a informação de que o usuário está logado
         localStorage.setItem('isLoggedIn', 'true');
-        // Redireciona para a página da calculadora se as credenciais forem corretas
-        window.location.href = "home.html";
+        // Redireciona para a página inicial se as credenciais forem corretas
+        window.location.href = "index.html";
     } else {
         document.getElementById('error-message').innerText = "Usuário ou senha incorretos.";
     }
@@ -21,6 +20,6 @@ function checkLogin() {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     if (!isLoggedIn) {
         // Redireciona para a página de login se o usuário não estiver logado
-        window.location.href = "index.html";
+        window.location.href = "login.html";
     }
 }
