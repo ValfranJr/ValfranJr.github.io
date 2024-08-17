@@ -127,3 +127,51 @@ footer {
     color: white;
     margin-top: 20px;
 }
+.calculator-section {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+}
+
+.calculator-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.calculator-section label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.calculator-section input,
+.calculator-section select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.calculator-section button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.calculator-section button:hover {
+    background-color: #218838;
+}
+
+.calculator-section p {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
