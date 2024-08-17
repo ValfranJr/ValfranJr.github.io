@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora iFood</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="ifood_script.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="calculadora.html">Calculadora</a></li>
+                <li><a href="calculadora_ifood.html">Calculadora iFood</a></li>
+                <li><a href="depoimentos.html">Depoimentos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="ifood-calculator-section">
+            <h2>Calculadora iFood</h2>
+            <form id="ifood-calculator-form">
+                <label for="valor-produto">Valor do Produto:</label>
+                <input type="number" id="valor-produto" required>
+
+                <label for="tipo-entrega">Tipo de Entrega:</label>
+                <select id="tipo-entrega" required>
+                    <option value="17%">Própria</option>
+                    <option value="27%">Parceira</option>
+                </select>
+
+                <button type="submit">Calcular</button>
+            </form>
+            <p id="resultado-ifood"></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Treinamentos para Delivery. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
