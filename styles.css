@@ -1,64 +1,85 @@
+/* Fontes Modernas */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #e9ecef;
+    background-color: #f0f4f8;
     color: #333;
 }
 
+/* Header Moderno */
 header {
-    background-color: #343a40;
+    background: linear-gradient(90deg, #343a40, #495057);
     color: white;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 nav {
     display: flex;
     justify-content: center;
-    padding: 10px 0;
+    gap: 20px;
 }
 
 nav ul {
     list-style: none;
     display: flex;
     gap: 20px;
+    margin: 0;
+    padding: 0;
 }
 
 nav ul li a {
     color: white;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 5px;
 }
 
-main {
-    padding: 20px;
+nav ul li a:hover {
+    background-color: #495057;
+    color: #f8f9fa;
 }
 
+/* Seção Hero */
 .hero {
-    background-color: #007bff;
+    background: linear-gradient(135deg, #007bff, #0056b3);
     color: white;
-    padding: 40px 20px;
+    padding: 50px 20px;
     text-align: center;
-    border-radius: 8px;
-    margin-bottom: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
+/* Redes Sociais */
 .social-media {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .social-icons {
     display: flex;
     justify-content: center;
-    gap: 15px;
-    margin-top: 10px;
+    gap: 20px;
+    margin-top: 15px;
 }
 
 .social-icons .icon {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     display: inline-block;
     background-size: cover;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.social-icons .icon:hover {
+    transform: scale(1.1);
 }
 
 .social-icons .facebook {
@@ -75,98 +96,109 @@ main {
 
 .whatsapp-button {
     margin-top: 20px;
-    padding: 10px 20px;
+    padding: 12px 25px;
     background-color: #25d366;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .whatsapp-button:hover {
     background-color: #1da851;
+    transform: scale(1.05);
 }
 
+/* Formulários */
 .login-form, .calculator-content {
     max-width: 600px;
     margin: 50px auto;
     background: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    padding: 35px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .login-form input, .calculator-content input {
     width: calc(100% - 40px);
-    margin: 10px 20px;
-    padding: 10px;
+    margin: 15px 20px;
+    padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
 }
 
 button {
-    padding: 10px 20px;
+    padding: 12px 25px;
     background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 button:hover {
     background-color: #0056b3;
+    transform: scale(1.05);
 }
 
+/* Footer Moderno */
 footer {
     text-align: center;
-    padding: 15px 0;
-    background-color: #343a40;
+    padding: 20px 0;
+    background: linear-gradient(90deg, #343a40, #495057);
     color: white;
-    margin-top: 20px;
+    margin-top: 30px;
 }
+
+/* Seção Calculadora */
 .calculator-section {
     max-width: 600px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 25px;
     background-color: #f7f7f7;
-    border-radius: 8px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .calculator-section h2 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    color: #343a40;
 }
 
 .calculator-section label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     font-weight: bold;
 }
 
 .calculator-section input,
 .calculator-section select {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 4px;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 5px;
     border: 1px solid #ccc;
 }
 
 .calculator-section button {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     background-color: #28a745;
     color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .calculator-section button:hover {
     background-color: #218838;
+    transform: scale(1.05);
 }
 
 .calculator-section p {
