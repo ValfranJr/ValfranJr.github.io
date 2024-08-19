@@ -206,6 +206,59 @@ footer {
     font-size: 18px;
     font-weight: bold;
 }
+/* Seção Calculadora iFood */
+.calculator-ifood-section {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 25px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.calculator-ifood-section h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #343a40;
+}
+
+.calculator-ifood-section label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.calculator-ifood-section input,
+.calculator-ifood-section select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.calculator-ifood-section button {
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.calculator-ifood-section button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.calculator-ifood-section p {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
     nav ul {
@@ -223,12 +276,12 @@ footer {
         font-size: 18px;
     }
 
-    .login-form, .calculator-content {
+    .login-form, .calculator-content, .calculator-ifood-section {
         padding: 20px;
         margin: 20px 10px;
     }
 
-    .calculator-section {
+    .calculator-section, .calculator-ifood-section {
         padding: 20px;
     }
 
@@ -250,11 +303,11 @@ footer {
         font-size: 16px;
     }
 
-    .login-form, .calculator-content {
+    .login-form, .calculator-content, .calculator-ifood-section {
         padding: 15px;
     }
 
-    .calculator-section {
+    .calculator-section, .calculator-ifood-section {
         padding: 15px;
     }
 
@@ -269,6 +322,10 @@ footer {
     }
 
     .whatsapp-button {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
         padding: 8px;
         font-size: 14px;
     }
