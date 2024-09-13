@@ -207,6 +207,58 @@ footer {
     font-size: 18px;
     font-weight: bold;
 }
+/* Seção Calculadora cupom*/
+.calculator-section, .calculator-cupom-section {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 25px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.calculator-section h2, .calculator-cupom-section h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #343a40;
+}
+
+.calculator-section label, .calculator-cupom-section label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.calculator-section input, .calculator-section select,
+.calculator-cupom-section input, .calculator-cupom-section select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.calculator-section button, .calculator-cupom-section button {
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.calculator-section button:hover, .calculator-cupom-section button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.calculator-section p, .calculator-cupom-section p {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
 /* Responsividade */
 @media (max-width: 768px) {
     nav ul {
