@@ -8,7 +8,7 @@ function calcularCupomEntrega() {
         return;
     }
 
-    const coeficienteMultiplicacao = ticketMedio / valorEntregaCupom;
+    const coeficienteMultiplicacao = valorEntregaCupom / ticketMedio;
     const resultadoFinal = valorProduto + (valorProduto * coeficienteMultiplicacao);
 
     document.getElementById('resultadoCupomEntrega').textContent = `Valor final com cupom ou taxa de entrega: R$ ${resultadoFinal.toFixed(2)}`;
