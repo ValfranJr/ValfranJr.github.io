@@ -1,4 +1,18 @@
+function calcularCupomEntrega() {
+    const ticketMedio = parseFloat(document.getElementById('ticketMedio').value);
+    const valorEntregaCupom = parseFloat(document.getElementById('valorEntregaCupom').value);
+    const valorProduto = parseFloat(document.getElementById('valorProduto').value);
 
+    if (isNaN(ticketMedio) || isNaN(valorEntregaCupom) || isNaN(valorProduto)) {
+        document.getElementById('resultadoCupomEntrega').textContent = "Por favor, preencha todos os campos corretamente.";
+        return;
+    }
+
+    const coeficienteMultiplicacao = ticketMedio / valorEntregaCupom;
+    const resultadoFinal = valorProduto + (valorProduto * coeficienteMultiplicacao);
+
+    document.getElementById('resultadoCupomEntrega').textContent = `Valor final com cupom ou taxa de entrega: R$ ${resultadoFinal.toFixed(2)}`;
+}
 function calcularPrecoVenda() {
     const cmv = parseFloat(document.getElementById('cmv').value);
     const emb = parseFloat(document.getElementById('emb').value);
