@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Cupom e Taxa de Entrega</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="calculadora.html">Calculadora</a></li>
+                <li><a href="calculadora-ifood.html">Calculadora iFood</a></li>
+                <li><a href="depoimentos.html">Depoimentos</a></li>
+                <li><a href="calculadora-cupom-entrega.html">Calculadora de Cupom e Entrega</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="calculator-cupom-section">
+            <h2>Calculadora de Cupom e Taxa de Entrega</h2>
+            <form>
+                <label for="ticketMedio">Ticket Médio:</label>
+                <input type="number" id="ticketMedio" placeholder="Insira o ticket médio">
+
+                <label for="valorEntregaCupom">Valor da Entrega ou Cupom:</label>
+                <input type="number" id="valorEntregaCupom" placeholder="Insira o valor da entrega ou cupom">
+
+                <label for="valorProduto">Valor do Produto:</label>
+                <input type="number" id="valorProduto" placeholder="Insira o valor do produto">
+
+                <button type="button" onclick="calcularCupomEntrega()">Calcular</button>
+            </form>
+            <p id="resultadoCupomEntrega"></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 - Tudubom Burgers. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
