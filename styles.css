@@ -155,7 +155,7 @@ footer {
 }
 
 /* Seção Calculadora */
-.calculator-section, .calculator-ifood-section {
+.calculator-section, #ifood-calculator-section{
     max-width: 600px;
     margin: 0 auto;
     padding: 25px;
@@ -164,21 +164,27 @@ footer {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-.calculator-section h2, .calculator-ifood-section h2 {
+.calculator-section h2{
     text-align: center;
     margin-bottom: 25px;
     color: #343a40;
 }
+#ifood-calculator-section input, #ifood-calculator-section select{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
 
-.calculator-section label, .calculator-ifood-section label {
+.calculator-section label, #ifood-calculator-section label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
 }
 
 .calculator-section input,
-.calculator-section select,
-.calculator-ifood-section input, .calculator-ifood-section select {
+.calculator-section select {
     width: 100%;
     padding: 12px;
     margin-bottom: 20px;
@@ -186,7 +192,7 @@ footer {
     border: 1px solid #ccc;
 }
 
-.calculator-section button, .calculator-ifood-section button {
+.calculator-section button, #ifood-calculator-section button {
     width: 100%;
     padding: 12px;
     background-color: #28a745;
@@ -197,18 +203,18 @@ footer {
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.calculator-section button:hover, .calculator-ifood-section button:hover {
+.calculator-section button:hover, #ifood-calculator-section button:hover {
     background-color: #218838;
     transform: scale(1.05);
 }
 
-.calculator-section p, .calculator-ifood-section p {
+.calculator-section p {
     text-align: center;
     font-size: 18px;
     font-weight: bold;
 }
 /* Seção Calculadora cupom*/
-.calculator-section, .calculator-cupom-section {
+.calculator-section, .calculator-cupom-section{
     max-width: 600px;
     margin: 0 auto;
     padding: 25px;
@@ -217,13 +223,13 @@ footer {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-.calculator-section h2, .calculator-cupom-section h2 {
+.calculator-section h2, .calculator-cupom-section h2{
     text-align: center;
     margin-bottom: 25px;
     color: #343a40;
 }
 
-.calculator-section label, .calculator-cupom-section label {
+.calculator-section label, .calculator-cupom-section label{
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
@@ -276,12 +282,12 @@ footer {
         font-size: 18px;
     }
 
-    .login-form, .calculator-content, .calculator-ifood-section {
+    .login-form, .calculator-content{
         padding: 20px;
         margin: 20px 10px;
     }
 
-    .calculator-section, .calculator-ifood-section {
+    .calculator-section, #ifood-calculator-section{
         padding: 20px;
     }
 
@@ -303,11 +309,11 @@ footer {
         font-size: 16px;
     }
 
-    .login-form, .calculator-content, .calculator-ifood-section {
+    .login-form, .calculator-content{
         padding: 15px;
     }
 
-    .calculator-section, .calculator-ifood-section {
+    .calculator-section, #ifood-calculator-section{
         padding: 15px;
     }
 
@@ -322,10 +328,6 @@ footer {
     }
 
     .whatsapp-button {
-        padding: 8px;
-        font-size: 14px;
-    }
-}
         padding: 8px;
         font-size: 14px;
     }
