@@ -1,48 +1,199 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculadora de Cupom e Taxa de Entrega</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
-</head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="calculadora.html">Calculadora</a></li>
-                <li><a href="calculadora_ifood.html">Calculadora iFood</a></li>
-                <li><a href="calculadora-cupom-entrega.html">Calculadora Cupom</a></li>
-                <li><a href="depoimentos.html">Depoimentos</a></li>
+    <!-- Tailwind 4 (browser build) -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Sua lógica -->
+    <script defer src="script.js"></script>
+  </head>
+  <body class="min-h-screen flex flex-col bg-slate-50 text-slate-900">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 backdrop-blur bg-slate-900/80 text-white shadow">
+      <nav class="max-w-6xl mx-auto px-4">
+        <div class="flex h-16 items-center justify-between">
+          <!-- Brand -->
+          <a href="index.html" class="inline-flex items-center gap-3 group">
+            <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-sky-400 shadow-inner">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor" aria-hidden="true"><path d="M13 2 3 14h7l-1 8 11-12h-7l1-8Z"/></svg>
+            </span>
+            <span class="text-lg font-semibold tracking-tight">Treinamentos Delivery</span>
+          </a>
 
-            </ul>
-        </nav>
+          <!-- Mobile button -->
+          <button id="menu-btn" class="md:hidden inline-flex items-center justify-center rounded-lg p-2 ring-1 ring-white/20 hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white" aria-label="Abrir menu">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+
+          <!-- Links -->
+          <ul id="nav-links" class="hidden md:flex items-center gap-6">
+            <li><a class="nav-link" href="index.html">Home</a></li>
+            <li><a class="nav-link" href="calculadora.html">Calculadora</a></li>
+            <li><a class="nav-link" href="calculadora_ifood.html">Calculadora iFood</a></li>
+            <li><a class="nav-link" href="calculadora-cupom-entrega.html" aria-current="page">Calculadora Cupom</a></li>
+            <li><a class="nav-link" href="depoimentos.html">Depoimentos</a></li>
+          </ul>
+        </div>
+        <!-- Mobile dropdown -->
+        <ul id="nav-panel" class="md:hidden hidden grid gap-2 pb-4">
+          <li><a class="nav-mobile" href="index.html">Home</a></li>
+          <li><a class="nav-mobile" href="calculadora.html">Calculadora</a></li>
+          <li><a class="nav-mobile" href="calculadora_ifood.html">Calculadora iFood</a></li>
+          <li><a class="nav-mobile" href="calculadora-cupom-entrega.html" aria-current="page">Calculadora Cupom</a></li>
+          <li><a class="nav-mobile" href="depoimentos.html">Depoimentos</a></li>
+        </ul>
+      </nav>
+
+      <style>
+        .nav-link{ @apply text-white/90 hover:text-white/100 relative pb-1; }
+        .nav-link::after{ content:""; @apply absolute left-0 -bottom-0.5 h-0.5 w-0 bg-gradient-to-r from-orange-300 to-yellow-300 transition-all duration-300; }
+        .nav-link:hover::after{ @apply w-full; }
+        .nav-mobile{ @apply rounded-lg px-3 py-2 text-white/90 hover:bg-white/10 hover:text-white transition; }
+      </style>
     </header>
 
-    <main>
-        <section class="calculator-cupom-section">
-            <h2>Calculadora de Cupom e Taxa de Entrega</h2>
-            <form>
-                <label for="ticketMedio">Ticket Médio:</label>
-                <input type="number" id="ticketMedio" placeholder="Insira o ticket médio">
+    <!-- Main -->
+    <main class="flex-1">
+      <!-- Page header -->
+      <section class="bg-gradient-to-br from-blue-600 via-indigo-600 to-sky-600 text-white">
+        <div class="max-w-6xl mx-auto px-4 py-10">
+          <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">Calculadora de Cupom e Taxa de Entrega</h1>
+          <p class="mt-2 text-white/90 max-w-3xl">Veja como cupons e frete impactam seu repasse. Informe ticket médio, valor do cupom/entrega e o preço do item.</p>
+        </div>
+      </section>
 
-                <label for="valorEntregaCupom">Valor da Entrega ou Cupom:</label>
-                <input type="number" id="valorEntregaCupom" placeholder="Insira o valor da entrega ou cupom">
+      <!-- Shell: form + resultado -->
+      <section class="max-w-6xl mx-auto px-4 py-10">
+        <div class="grid gap-8 md:grid-cols-5">
+          <!-- FORM -->
+          <div class="md:col-span-3">
+            <div class="calc-card">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h2 class="text-2xl md:text-3xl font-bold tracking-tight">Parâmetros</h2>
+                  <p class="mt-1 text-sm text-slate-500">Percentuais não são necessários; informe valores em reais.</p>
+                </div>
+                <span class="badge">Cupom/Entrega</span>
+              </div>
 
-                <label for="valorProduto">Valor do Produto:</label>
-                <input type="number" id="valorProduto" placeholder="Insira o valor do produto">
+              <form class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6" onsubmit="event.preventDefault();calcularCupomEntrega();">
+                <!-- Ticket Médio -->
+                <label class="field" for="ticketMedio">
+                  <span class="field-label">Ticket Médio</span>
+                  <div class="input-group">
+                    <span class="prefix">R$</span>
+                    <input id="ticketMedio" type="number" step="0.01" inputmode="decimal" placeholder="45,00" class="input-field pl-10" />
+                  </div>
+                  <div class="chips">
+                    <button type="button" class="chip" onclick="document.getElementById('ticketMedio').value=35">35</button>
+                    <button type="button" class="chip" onclick="document.getElementById('ticketMedio').value=45">45</button>
+                    <button type="button" class="chip" onclick="document.getElementById('ticketMedio').value=60">60</button>
+                  </div>
+                </label>
 
-                <button type="button" onclick="calcularCupomEntrega()">Calcular</button>
-            </form>
-            <p id="resultadoCupomEntrega"></p>
-        </section>
+                <!-- Valor Entrega/Cupom -->
+                <label class="field" for="valorEntregaCupom">
+                  <span class="field-label">Valor da Entrega ou Cupom</span>
+                  <div class="input-group">
+                    <span class="prefix">R$</span>
+                    <input id="valorEntregaCupom" type="number" step="0.01" inputmode="decimal" placeholder="6,99" class="input-field pl-10" />
+                  </div>
+                  <div class="chips">
+                    <button type="button" class="chip" onclick="document.getElementById('valorEntregaCupom').value=0">0</button>
+                    <button type="button" class="chip" onclick="document.getElementById('valorEntregaCupom').value=4.99">4,99</button>
+                    <button type="button" class="chip" onclick="document.getElementById('valorEntregaCupom').value=6.99">6,99</button>
+                    <button type="button" class="chip" onclick="document.getElementById('valorEntregaCupom').value=9.99">9,99</button>
+                  </div>
+                </label>
+
+                <!-- Valor do Produto -->
+                <label class="field" for="valorProduto">
+                  <span class="field-label">Valor do Produto</span>
+                  <div class="input-group">
+                    <span class="prefix">R$</span>
+                    <input id="valorProduto" type="number" step="0.01" inputmode="decimal" placeholder="29,90" class="input-field pl-10" />
+                  </div>
+                  <div class="chips">
+                    <button type="button" class="chip" onclick="document.getElementById('valorProduto').value=19.9">19,90</button>
+                    <button type="button" class="chip" onclick="document.getElementById('valorProduto').value=29.9">29,90</button>
+                    <button type="button" class="chip" onclick="document.getElementById('valorProduto').value=39.9">39,90</button>
+                  </div>
+                </label>
+
+                <!-- Ações -->
+                <div class="md:col-span-2 flex flex-col sm:flex-row gap-3">
+                  <button type="submit" class="btn-primary inline-flex items-center gap-2">
+                    <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m12 6 6 6-6 6"/></svg>
+                    Calcular
+                  </button>
+                  <button type="button" class="btn-secondary" onclick="['ticketMedio','valorEntregaCupom','valorProduto'].forEach(id=>document.getElementById(id).value='');document.getElementById('resultadoCupomEntrega').textContent='—';">Limpar</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- RESULTADO -->
+          <aside class="md:col-span-2">
+            <div class="result-card">
+              <h2 class="text-lg font-semibold">Resultado</h2>
+              <p id="resultadoCupomEntrega" class="mt-3 text-4xl md:text-5xl font-extrabold tabular-nums text-blue-700">—</p>
+              <div class="mt-6 grid grid-cols-2 gap-3">
+                <div class="stat"><span class="stat-label">Ticket médio</span><span class="stat-value" id="stat-ticket">— </span></div>
+                <div class="stat"><span class="stat-label">Cupom/Entrega</span><span class="stat-value" id="stat-cupom">—</span></div>
+                <div class="stat"><span class="stat-label">Produto</span><span class="stat-value" id="stat-produto">—</span></div>
+                <div class="stat"><span class="stat-label">Impacto</span><span class="stat-value" id="stat-impacto">—</span></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
     </main>
 
-    <footer>
-        <p>&copy; 2024 - . Todos os direitos reservados.</p>
+    <!-- Footer -->
+    <footer class="mt-auto border-t border-slate-200 bg-white/80 backdrop-blur">
+      <div class="max-w-6xl mx-auto px-4 py-6 text-center text-sm text-slate-600">
+        © 2024 Treinamentos para Delivery. Todos os direitos reservados.
+      </div>
     </footer>
-    <script src="script.js"></script>
-</body>
+
+    <style>
+      /* Cards e shells */
+      .calc-card{ @apply rounded-3xl border border-slate-200 bg-white p-6 md:p-8 shadow-xl ring-1 ring-slate-100; }
+      .result-card{ @apply rounded-3xl border border-blue-100 bg-gradient-to-br from-white to-blue-50 p-6 md:p-8 shadow-lg; }
+      .card{ @apply rounded-2xl border border-slate-200 bg-white p-6 shadow-sm; }
+      .badge{ @apply inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 ring-1 ring-white; }
+
+      /* Campos */
+      .field{ @apply grid gap-2; }
+      .field-label{ @apply text-sm font-semibold text-slate-700; }
+      .input-group{ @apply relative flex items-center rounded-2xl border border-slate-300 bg-white px-3 py-3 shadow-inner transition focus-within:ring-2 focus-within:ring-blue-300; }
+      .input-field{ @apply w-full bg-transparent px-2 text-base text-slate-900 placeholder:text-slate-400 focus:outline-none; }
+      .prefix{ @apply pointer-events-none text-slate-500; }
+      .chips{ @apply mt-2 flex flex-wrap gap-2; }
+      .chip{ @apply inline-flex items-center rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-medium text-slate-700 hover:bg-slate-50; }
+      .note{ @apply text-xs text-slate-500; }
+
+      /* Botões */
+      .btn-primary{ @apply inline-flex items-center justify-center rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white shadow hover:bg-blue-500 transition; }
+      .btn-secondary{ @apply inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-6 py-3 font-semibold text-slate-700 hover:bg-slate-50 transition; }
+
+      /* Stats */
+      .stat{ @apply rounded-xl border border-slate-200 bg-white p-3 text-center; }
+      .stat-label{ @apply text-[11px] uppercase tracking-wide text-slate-500; }
+      .stat-value{ @apply mt-1 text-sm font-semibold text-slate-800; }
+    </style>
+
+    <script>
+      // Mobile nav toggle
+      const btn = document.getElementById('menu-btn');
+      const links = document.getElementById('nav-links');
+      const panel = document.getElementById('nav-panel');
+      btn?.addEventListener('click', () => {
+        links.classList.toggle('hidden');
+        panel.classList.toggle('hidden');
+      });
+    </script>
+  </body>
 </html>

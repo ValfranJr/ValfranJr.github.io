@@ -1,80 +1,187 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculadora de Preço de Venda</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="login.js"></script>
-</head>
-<body onload="checkLogin()">
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="calculadora.html">Calculadora</a></li>
-                <li><a href="calculadora_ifood.html">Calculadora iFood</a></li>
-                <li><a href="calculadora-cupom-entrega.html">Calculadora Cupom</a></li>
-                <li><a href="depoimentos.html">Depoimentos</a></li>
-            </ul>
-        </nav>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script defer src="login.js"></script>
+  </head>
+  <body onload="login()" class="min-h-screen flex flex-col bg-slate-100 text-slate-900">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 backdrop-blur bg-slate-900/80 text-white shadow">
+      <nav class="max-w-6xl mx-auto px-4">
+        <div class="flex h-16 items-center justify-between">
+          <a href="index.html" class="inline-flex items-center gap-3 group">
+            <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-sky-400 shadow-inner">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor"><path d="M13 2 3 14h7l-1 8 11-12h-7l1-8Z"/></svg>
+            </span>
+            <span class="text-lg font-semibold tracking-tight">Treinamentos Delivery</span>
+          </a>
+          <ul class="hidden md:flex items-center gap-6">
+            <li><a class="nav-link" href="index.html">Home</a></li>
+            <li><a class="nav-link" href="calculadora.html" aria-current="page">Calculadora</a></li>
+            <li><a class="nav-link" href="calculadora_ifood.html">Calculadora iFood</a></li>
+            <li><a class="nav-link" href="calculadora-cupom-entrega.html">Calculadora Cupom</a></li>
+            <li><a class="nav-link" href="depoimentos.html">Depoimentos</a></li>
+          </ul>
+        </div>
+      </nav>
     </header>
 
-    <main>
-        <div id="loginForm" class="login-form">
-            <h2>Login</h2>
-            <label for="username">Usuário:</label>
-            <input type="text" id="username" placeholder="Insira seu usuário">
+    <!-- Main -->
+    <main class="flex-1 py-12">
+      <section class="max-w-6xl mx-auto px-4">
+        <!-- Shell da calculadora: grid com Form (à esquerda) + Resultado (à direita) -->
+        <div class="grid gap-8 md:grid-cols-5">
+          <!-- FORM -->
+          <div class="md:col-span-3">
+            <div class="calc-card">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h1 class="text-2xl md:text-3xl font-bold tracking-tight">Calculadora de Preço de Venda</h1>
+                  <p class="mt-1 text-sm text-slate-500">Preencha os campos. Os percentuais são informados em % (ex.: 10).</p>
+                </div>
 
-            <label for="password">Senha:</label>
-            <input type="password" id="password" placeholder="Insira sua senha">
+              </div>
 
-            <button onclick="login()">Entrar</button>
+              <form class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6" onsubmit="event.preventDefault();calcularPrecoVenda();">
+                <!-- CMV -->
+                <label class="field" for="cmv">
+                  <span class="field-label">CMV - ( Custo de Mercadoria Vendida )</span>
+                  <div class="input-group">
+                    <span class="prefix">R$</span>
+                    <input id="cmv" type="number" step="0.01" inputmode="decimal" placeholder="50,00" class="input-field pl-10" />
+                  </div>
 
-            <p id="error-message" style="color:red;"></p>
-        </div>
+                </label>
 
-        <div id="calculatorContent" class="calculator-content" style="display: none;">
-            <h2>Calculadora de Preço de Venda</h2>
-            <label for="cmv">Custo de Mercadoria Vendida (CMV):</label>
-            <input type="number" id="cmv" placeholder="Insira o CMV">
+                <!-- Embalagem -->
+                <label class="field" for="emb">
+                  <span class="field-label">Embalagem - (Unitário)</span>
+                  <div class="input-group">
+                    <span class="prefix">R$</span>
+                    <input id="emb" type="number" step="0.01" inputmode="decimal" placeholder="5,00" class="input-field pl-10" />
+                  </div>
 
-            <label for="emb">Custo da Embalagem (EMB):</label>
-            <input type="number" id="emb" placeholder="Insira o custo da embalagem">
+                </label>
 
-            <label for="custoFixo">Percentual do Custo Fixo (%):</label>
-            <input type="number" id="custoFixo" placeholder="Insira o percentual do custo fixo">
+                <!-- Custo Fixo (%) -->
+                <label class="field" for="custoFixo">
+                  <span class="field-label">Custo Fixo</span>
+                  <div class="input-group">
+                    <input id="custoFixo" type="number" step="0.01" inputmode="decimal" placeholder="10" class="input-field pr-10" />
+                    <span class="suffix">%</span>
+                  </div>
+                  <div class="chips">
+                    <button type="button" class="chip" onclick="document.getElementById('custoFixo').value=33;">33%</button>
+                    <button type="button" class="chip" onclick="document.getElementById('custoFixo').value=40;">40%</button>
+                    <button type="button" class="chip" onclick="document.getElementById('custoFixo').value=50;">50%</button>
+                  </div>
+                </label>
 
-            <label for="lucro">Percentual de Lucro (%):</label>
-            <input type="number" id="lucro" placeholder="Insira o percentual de lucro">
+                <!-- Lucro (%) -->
+                <label class="field" for="lucro">
+                  <span class="field-label">Lucro</span>
+                  <div class="input-group">
+                    <input id="lucro" type="number" step="0.01" inputmode="decimal" placeholder="20" class="input-field pr-10" />
+                    <span class="suffix">%</span>
+                  </div>
+                  <div class="chips">
+                    <button type="button" class="chip" onclick="document.getElementById('lucro').value=10;">10%</button>
+                    <button type="button" class="chip" onclick="document.getElementById('lucro').value=15;">15%</button>
+                    <button type="button" class="chip" onclick="document.getElementById('lucro').value=20;">20%</button>
+                  </div>
+                </label>
 
-            <button onclick="calcularPrecoVenda()">Calcular Preço de Venda</button>
+                <!-- Ações -->
+                <div class="md:col-span-2 flex flex-col sm:flex-row gap-3">
+                  <button type="submit" class="btn-primary inline-flex items-center gap-2">
+                    <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m12 6 6 6-6 6"/></svg>
+                    Calcular
+                  </button>
+                  <button type="button" class="btn-secondary" onclick="['cmv','emb','custoFixo','lucro'].forEach(id=>document.getElementById(id).value='');document.getElementById('resultado').textContent='—';">Limpar</button>
+                </div>
 
-            <h3 id="resultado"></h3>
-
-            <h2>FAQ - Perguntas Frequentes</h2>
-            <div>
-                <h3>O que é CMV?</h3>
-                <p>CMV é o Custo de Mercadoria Vendida. Refere-se ao custo direto de produção dos bens vendidos por uma empresa. Inclui o custo das matérias-primas e da mão de obra utilizada na produção dos bens.</p>
-
-                <h3>O que é o Custo da Embalagem?</h3>
-                <p>Este é o custo associado à embalagem utilizada para embalar o produto antes da venda.</p>
-
-                <h3>O que é o Percentual do Custo Fixo?</h3>
-                <p>O Percentual do Custo Fixo refere-se à porcentagem dos custos fixos que você deseja atribuir ao cálculo do preço de venda. Custos fixos são aqueles que não variam com a produção, como aluguel, salários, etc.</p>
-
-                <h3>O que é o Percentual de Lucro?</h3>
-                <p>O Percentual de Lucro é a margem de lucro desejada sobre o custo total. Representa o quanto você quer ganhar em relação ao custo para definir o preço de venda.</p>
-
-                <h3>Exemplo de Cálculo</h3>
-                <p>Se o CMV é R$ 50, o custo da embalagem é R$ 5, o percentual de custo fixo é 10% (0,10) e o percentual de lucro é 20% (0,20), o preço de venda seria calculado da seguinte forma:</p>
-                <p>Preço de Venda = (50 + 5) / (1 - (0,10 + 0,20)) = 55 / 0,7 = R$ 78,57</p>
+                <p class="note md:col-span-2">Fórmula: <span class="font-semibold">(CMV + EMB) ÷ (1 − (Custo Fixo% + Lucro%))</span></p>
+              </form>
             </div>
+          </div>
+
+          <!-- RESULTADO -->
+          <aside class="md:col-span-2">
+            <div class="result-card">
+              <h2 class="text-lg font-semibold">Resultado</h2>
+              <p id="resultado" class="mt-3 text-4xl md:text-5xl font-extrabold tabular-nums text-blue-700">—</p>
+              <div class="mt-6 grid grid-cols-2 gap-3">
+                <div class="stat"><span class="stat-label">Entrada esperada</span><span class="stat-value">CMV + EMB</span></div>
+                <div class="stat"><span class="stat-value">/ Custo Fixo% + Lucro%</span></div>
+              </div>
+              <p class="mt-2 text-xs text-slate-500">Dica: se o valor ficar inválido, verifique se (Custo Fixo% + Lucro%) é menor que 100%.</p>
+            </div>
+          </aside>
         </div>
+
+        <!-- FAQ -->
+        <div class="mt-12">
+          <div class="card">
+            <h2 class="text-2xl font-bold mb-4">FAQ — Perguntas Frequentes</h2>
+            <details class="faq-item"><summary>O que é CMV?</summary><p>CMV é o Custo de Mercadoria Vendida: custo direto de produção, incluindo insumos e mão de obra direta.</p></details>
+            <details class="faq-item"><summary>O que é o custo da embalagem?</summary><p>Custo associado à embalagem utilizada para o produto antes da venda.</p></details>
+            <details class="faq-item"><summary>O que é o percentual do custo fixo?</summary><p>Percentual dos custos fixos (aluguel, salários etc.) alocado no cálculo do preço.</p></details>
+            <details class="faq-item"><summary>O que é o percentual de lucro?</summary><p>Margem desejada sobre o custo total.</p></details>
+            <details class="faq-item"><summary>Exemplo de cálculo</summary><p>Ex.: (50 + 5) ÷ (1 − (0,10 + 0,20)) = 55 ÷ 0,7 = 78,57.</p></details>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <footer>
-        <p>© 2024 Treinamentos para Delivery. Todos os direitos reservados.</p>
+    <footer class="mt-auto border-t border-slate-200 bg-white">
+      <div class="max-w-6xl mx-auto px-4 py-6 text-center text-sm text-slate-600">
+        © 2024 Treinamentos para Delivery. Todos os direitos reservados.
+      </div>
     </footer>
-</body>
+
+    <style>
+      /* Cards e shells */
+      .calc-card{ @apply rounded-3xl border border-slate-200 bg-white p-6 md:p-8 shadow-xl ring-1 ring-slate-100; }
+      .result-card{ @apply rounded-3xl border border-blue-100 bg-gradient-to-br from-white to-blue-50 p-6 md:p-8 shadow-lg; }
+      .card{ @apply rounded-2xl border border-slate-200 bg-white p-6 shadow-sm; }
+      .badge{ @apply inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 ring-1 ring-white; }
+
+      /* Campos */
+      .field{ @apply grid gap-2; }
+      .field-label{ @apply text-sm font-semibold text-slate-700; }
+      .input-group{ @apply relative flex items-center rounded-2xl border border-slate-300 bg-white px-3 py-3 shadow-inner transition focus-within:ring-2 focus-within:ring-blue-300; }
+      .input-field{ @apply w-full bg-transparent px-2 text-base text-slate-900 placeholder:text-slate-400 focus:outline-none; }
+      .prefix{ @apply pointer-events-none text-slate-500; }
+      .suffix{ @apply pointer-events-none absolute right-3 text-slate-500; }
+      .chips{ @apply mt-2 flex flex-wrap gap-2; }
+      .chip{ @apply inline-flex items-center rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-medium text-slate-700 hover:bg-slate-50; }
+      .hint{ @apply text-xs text-slate-500; }
+
+      /* Botões */
+      .btn-primary{ @apply inline-flex items-center justify-center rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white shadow hover:bg-blue-500 transition; }
+      .btn-secondary{ @apply inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-6 py-3 font-semibold text-slate-700 hover:bg-slate-50 transition; }
+
+      /* Stats/FAQ */
+      .stat{ @apply rounded-xl border border-slate-200 bg-white p-3 text-center; }
+      .stat-label{ @apply text-[11px] uppercase tracking-wide text-slate-500; }
+      .stat-value{ @apply mt-1 text-sm font-semibold text-slate-800; }
+      .faq-item{ @apply py-3 border-b border-slate-200; }
+      .faq-item summary{ @apply cursor-pointer font-medium text-slate-800; }
+      .faq-item p{ @apply mt-2 text-sm text-slate-600; }
+      .note{ @apply text-xs text-slate-500; }
+
+      /* Header nav */
+      .nav-link{ @apply text-white/90 hover:text-white font-medium; }
+    </style>
+
+    <script>
+      function formatBRL(valor){
+        if (isNaN(valor)) return '—';
+        return valor.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+      }
+    </script>
+  </body>
 </html>
